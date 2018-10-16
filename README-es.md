@@ -18,16 +18,17 @@ Streisand
 
 La Internet puede ser un poco injusta. Es muy simple para proveedores de internet, empresas de telecomunicaciones, politicos y corporaciones bloquear el acceso a sitios e información que te interesa. Y atravesar esas restricciones es *dificil*. O no?
 
-Introducing Streisand
+Presentando a Streisand
 ---------------------
-* A single command sets up a brand new Ubuntu 16.04 server running a [wide variety of anti-censorship software](#services-provided) that can completely mask and encrypt all of your Internet traffic.
-* Streisand natively supports the creation of new servers at [Amazon EC2](https://aws.amazon.com/ec2/), [Azure](https://azure.microsoft.com), [DigitalOcean](https://www.digitalocean.com/), [Google Compute Engine](https://cloud.google.com/compute/), [Linode](https://www.linode.com/), and [Rackspace](https://www.rackspace.com/)&mdash;with more providers coming soon! It also runs on any Ubuntu 16.04 server regardless of provider, and **hundreds** of instances can be configured simultaneously using this method.
-* The process is completely automated and only takes about ten minutes, which is pretty awesome when you consider that it would require the average system administrator several days of frustration to set up even a small subset of what Streisand offers in its out-of-the-box configuration.
-* Once your Streisand server is running, you can give the custom connection instructions to friends, family members, and fellow activists. The connection instructions contain an embedded copy of the server's unique SSL certificate, so you only have to send them a single file.
-* Each server is entirely self-contained and comes with absolutely everything that users need to get started, including cryptographically verified mirrors of all common clients. This renders any attempted censorship of default download locations completely ineffective.
-* But wait, there's more...
+* Un solo comando prepara un nuevo servidor Ubuntu 16.04 corriendo una [variedad de software anti-censura](#services-provided) que puede enmascarar y encriptar todo tu trafico de Internet.
+* Streisand soporta la creación de nuevos servidores nativos en [Amazon EC2](https://aws.amazon.com/ec2/), [Azure](https://azure.microsoft.com), [DigitalOcean](https://www.digitalocean.com/), [Google Compute Engine](https://cloud.google.com/compute/), [Linode](https://www.linode.com/), and [Rackspace](https://www.rackspace.com/). Y más proveedores muy pronto!
+Tambien funciona en cualquier servidor Ubuntu 16.04, sin importar el proveedor, y **cientos** de instancias pueden ser configuradas simultaneamente utilizando este metodo.
+* El proceso está completamente automatizado y solo toma alrededor de diez minutos, lo cual es bastante increible si se tiene en cuenta que requeriría varios días de frustración y trabajo a un administrador de sistemas promedio configurar solo un sub conjunto de lo que Streisand ofrece.
+* Una vez que tu servidor Streisand está funcionando, le puedes dar las instrucciones de conexión personalizadas a amigos, familia, y otros compañeros activistas. Las instrucciones de conexión contienen una copia embebida del certificado SSL único del servidor, con lo cual solo debes enviarles un archivo.
+* Cada servidor es auto-contenido y viene con absolutamente todo lo que un usuario requiere para utilizarlo, incluyendo copias espejo de todos los software cliente verificadas de forma criptografica. Esto elimina cualquier intento de censurar las descargas. 
+* Pero espera, todavía hay más...
 
-More Features
+Más Caracteristicas
 -------------
 * Nginx powers a password-protected and encrypted Gateway that serves as the starting point for new users. The Gateway is accessible over SSL, or as a Tor [hidden service](https://www.torproject.org/docs/hidden-services.html.en).
   * Beautiful, custom, step-by-step client configuration instructions are generated for each new server that Streisand creates. Users can quickly access these instructions through any web browser. The instructions are responsive and look fantastic on mobile phones.
