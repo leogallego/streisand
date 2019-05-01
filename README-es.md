@@ -3,198 +3,86 @@
 </p>
 
 - - -
-[English](README.md), [Français](README-fr.md), [简体中文](README-chs.md), [Русский](README-ru.md) | [Mirror](https://gitlab.com/alimakki/streisand)
+[English](README.md), [Français](README-fr.md), [简体中文](README-chs.md), [Русский](README-ru.md), [Español](README-es.md) | [Mirror](https://gitlab.com/alimakki/streisand)
 - - -
 
 [![Build Status](https://travis-ci.org/StreisandEffect/streisand.svg?branch=master)](https://travis-ci.org/StreisandEffect/streisand)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/espadrine.svg?style=social&label=Follow%20%40StreisandVPN)](https://twitter.com/StreisandVPN)
 
-Streisand
+TRANSLATION IN PROGRESS
 =========
 
-*EN PROCESO*
+Streisand
+=========
 
 **Silencia la censura. Automatiza el [efecto](https://es.wikipedia.org/wiki/Efecto_Streisand).**
 
 La Internet puede ser un poco injusta. Es muy simple para proveedores de internet, empresas de telecomunicaciones, politicos y corporaciones bloquear el acceso a sitios e información que te interesa. Y atravesar esas restricciones es *dificil*. O no?
 
-Presentando a Streisand
----------------------
-* Un solo comando prepara un nuevo servidor Ubuntu 16.04 corriendo una [variedad de software anti-censura](#services-provided) que puede enmascarar y encriptar todo tu trafico de Internet.
-* Streisand soporta la creación de nuevos servidores nativos en [Amazon EC2](https://aws.amazon.com/ec2/), [Azure](https://azure.microsoft.com), [DigitalOcean](https://www.digitalocean.com/), [Google Compute Engine](https://cloud.google.com/compute/), [Linode](https://www.linode.com/), and [Rackspace](https://www.rackspace.com/). Y más proveedores muy pronto!
-Tambien funciona en cualquier servidor Ubuntu 16.04, sin importar el proveedor, y **cientos** de instancias pueden ser configuradas simultaneamente utilizando este metodo.
-* El proceso está completamente automatizado y solo toma alrededor de diez minutos, lo cual es bastante increible si se tiene en cuenta que requeriría varios días de frustración y trabajo a un administrador de sistemas promedio configurar solo un sub conjunto de lo que Streisand ofrece.
-* Una vez que tu servidor Streisand está funcionando, le puedes dar las instrucciones de conexión personalizadas a amigos, familia, y otros compañeros activistas. Las instrucciones de conexión contienen una copia embebida del certificado SSL único del servidor, con lo cual solo debes enviarles un archivo.
-* Cada servidor es auto-contenido y viene con absolutamente todo lo que un usuario requiere para utilizarlo, incluyendo copias espejo de todos los software cliente verificadas de forma criptografica. Esto elimina cualquier intento de censurar las descargas. 
-* Pero espera, todavía hay más...
+Si tienes una cuenta con un proveedor de servicios en la nube (cloud computing), Streisand puede crear un nuevo nodo con multiples servicios de VPN resistentes a la censura de forma casí automatica. Vas a necesitar un poco de experiencia con la linea de comando de Unix (aunque sin Streisand, realizar esta tarea de forma segura podría llevarle días a un administrador Unix experimentado!). Al finalizar, tendrás un sitio web privado con el software y las instrucciones.
 
-Más Caracteristicas
--------------
-* Nginx provee una puerta de enlace (gateway) protegida con clave y encriptada, que sirve como punto de partida para nuevos usuarios. La puerta de enlace es accesible vía SSL, o mediante el [servicio oculto](https://www.torproject.org/docs/hidden-services.html.es) de Tor.
-  * Instrucciones de configuración bellas, personalizadas y paso a paso son generadas para cada nuevo servidor que Streisand crea. Los usuarios pueden acceder rapidamente a estas instrucciones desde cualquier navegador web. Las instrucciones son adaptables a clientes mobiles (responsive) y se ven fantastico en celulares.
-  * La integridad del software espejado es asegurada mediante la útilización de firmas criptograficas (checksums) SHA-256, o vía la verificación de llaves GPG si el proyecto las provee. Esto protege a los usuarios de descargar archivos corrompidos.
-  * Todos los archivos auxiliares, tal como los de configuración de perfiles de OpenVPN, están tambien disponibles vía la puerta de enlace.
-  * Los usuarios actuales de Tor pueden aprovechar las ventajas adicionales que Streisand ofrece para transferir archivos grandes o manejar otros tipos de trafico (ej. BitTorrent) que no son apropiados para la red Tor.
-  * Una clave (password), certificado SSL y llave privada SSL son generadas para cada puerta de enlace Streisand. Las instrucciones de la puerta de enlace y el certificado son transferidos vía SSH al finalizar la ejecución de Streisand.
-* Distintos servicios y multiples demonios proveen una enorme flexibilidad. Si un metodo de conexión se ve bloqueado, hay disponibles numerosas opciones para reemplazarlo, siendo la mayoría resistentes a Deep Packet Inspection.
-  * Todos los metodos de conexión (incluyendo conexiones OpenVPN directas) son efectivos contra el tipo de bloqueo que Turquia a estado experimentando.
-  * OpenConnect/AnyConnect, OpenSSH, OpenVPN (envuelto en stunnel), Shadowsocks, Tor (con obfsproxy y el transporte obfs4), y WireGuard son todos actualmente efectivos contra la Gran Firewall de China.
-* Cada tarea ha sido documentada y descrita en detalle. Streisand es simultaneamente el COMO (HOWTO) más completo para todo el software que instala, así como también el antidoto para no tener que hacerlo a mano.
-* Todo el software corre en puertos que han sido elegidos deliberadamente para evitar el bloqueo, de forma tal que no se pueda cerrar el acceso a estos sin causar daños colaterales a otros servicios legitimos. OpenVPN, por ejemplo, no útiliza su puerto predeterminado 1194, sino que utiliza el puerto 636, que es estandar para conexiones LDAP/SSL de compañias en todo el mundo.
+Este es **[un ejemplo de un servidor Streisand](http://streisandeffect-demo.s3-website.us-east-2.amazonaws.com/)** y como luce.
 
-<a name="services-provided"></a>
-Servicios Provistos
------------------
+
+Hay una [lista de proveedores de nube soportados](#cloud-providers); aunque expertos puedan utilizar e instalar Streisand en muchos otros.
+
+
+## Servicios de VPN
+
+Un tipo de herramienta que se utiliza habitualmente para evitar la censura en redes es la Red Privada Virtual (VPN de sus siglás en inglés; _Virtual Private Network_). Hay varios tipos de VPN.
+
+No toda la censura de la red es igual; en algunos lugares esto cambia día a día. Streisand provee distintos tipos de servicios de VPN para evitar distintos tipos de bloqueos o censura. (Y no hace falta instalarlos todos).
+
+Algunos servicios de Streisand incluyen extensiones (add-ons) para proveer mayor resistencia a la censura:
 
 * [OpenSSH](https://www.openssh.com/)
-  * Windows and Android SSH tunnels are also supported, and a copy of the keypair is exported in the .ppk format that PuTTY requires.
-  * [Tinyproxy](https://banu.com/tinyproxy/) is installed and bound to localhost. It can be accessed over an SSH tunnel by programs that do not natively support SOCKS and that require an HTTP proxy, such as Twitter for Android.
-  * An unprivileged forwarding user and SSH keypair are generated for [sshuttle](https://github.com/sshuttle/sshuttle) and SOCKS capabilities.
+    * [Tinyproxy](https://banu.com/tinyproxy/) puede ser utilizado como un proxy HTTP
 * [OpenConnect](https://ocserv.gitlab.io/www/index.html) / [Cisco AnyConnect](https://www.cisco.com/c/en/us/products/security/anyconnect-secure-mobility-client/index.html)
-  * OpenConnect (ocserv) is an extremely high-performance and lightweight VPN server that also features full compatibility with the official Cisco AnyConnect clients.
-  * The [protocol](https://ocserv.gitlab.io/www/technical.html) is built on top of standards like HTTP, TLS, and DTLS, and it's one of the most popular and widely used VPN technologies among large multi-national corporations.
-    * This means that in addition to its ease-of-use and speed, OpenConnect is also highly resistant to censorship and is almost never blocked.
+    * Este protocolo es muy utilizado por corporaciones internacionales, y no suele ser bloqueado.
 * [OpenVPN](https://openvpn.net/index.php/open-source.html)
-  * Self-contained "unified" .ovpn profiles are generated for easy client configuration using only a single file.
-  * Both TCP and UDP connections are supported.
-  * Client DNS resolution is handled via [Dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) to prevent DNS leaks.
-  * TLS Authentication is enabled which helps protect against active probing attacks. Traffic that does not have the proper HMAC is simply dropped.
-* [Shadowsocks](https://shadowsocks.org/en/index.html)
-  * The high-performance [libev variant](https://github.com/shadowsocks/shadowsocks-libev) is installed. This version is capable of handling thousands of simultaneous connections.
-  * A QR code is generated that can be used to automatically configure the Android and iOS clients by simply taking a picture. You can tag '8.8.8.8' on that concrete wall, or you can glue the Shadowsocks instructions and some QR codes to it instead!
-  * [AEAD](https://shadowsocks.org/en/spec/AEAD-Ciphers.html) support is enabled using ChaCha20 and Poly1305 for enhanced security and improved GFW evasion.
-  * The [simple-obfs](https://github.com/shadowsocks/simple-obfs) plugin is installed to provide robust traffic evasion on hostile networks (especially those implementing quality of service (QOS) throttling).
-* [sslh](https://www.rutschle.net/tech/sslh/README.html)
-  * Sslh is a protocol demultiplexer that allows Nginx, OpenSSH, and OpenVPN to share port 443. This provides an alternative connection option and means that you can still route traffic via OpenSSH and OpenVPN even if you are on a restrictive network that blocks all access to non-HTTP ports.
-* [Stunnel](https://www.stunnel.org/index.html)
-  * Listens for and wraps OpenVPN connections. This makes them look like standard SSL traffic and allows OpenVPN clients to successfully establish tunnels even in the presence of Deep Packet Inspection.
-  * Unified profiles for stunnel-wrapped OpenVPN connections are generated alongside the direct connection profiles. Detailed instructions are also generated.
-  * The stunnel certificate and key are exported in PKCS #12 format so they are compatible with other SSL tunneling applications. Notably, this enables [OpenVPN for Android](https://play.google.com/store/apps/details?id=de.blinkt.openvpn) to tunnel its traffic through [SSLDroid](https://play.google.com/store/apps/details?id=hu.blint.ssldroid). OpenVPN in China on a mobile device? Yes!
-* [Tor](https://www.torproject.org/)
-  * A [bridge relay](https://www.torproject.org/docs/bridges) is set up with a random nickname.
-  * [Obfsproxy](https://www.torproject.org/projects/obfsproxy.html.en) is installed and configured with support for the obfs4 pluggable transport.
-  * A BridgeQR code is generated that can be used to automatically configure [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) for Android.
-* [UFW](https://wiki.ubuntu.com/UncomplicatedFirewall)
-  * Firewall rules are configured for every service, and any traffic that is sent to an unauthorized port will be blocked.
-* [unattended-upgrades](https://help.ubuntu.com/community/AutomaticSecurityUpdates)
-  * Your Streisand server is configured to automatically install new security updates.
-* [WireGuard](https://www.wireguard.com/)
-  * Linux users can take advantage of this next-gen, simple, kernel-based, state-of-the-art VPN that also happens to be ridiculously fast and uses modern cryptographic principles that all other highspeed VPN solutions lack.
+    * [Stunnel](https://www.stunnel.org/index.html) extensión disponible.
+* [Shadowsocks](https://shadowsocks.org/en/index.html), 
+    * [simple-obfs](https://github.com/shadowsocks/simple-obfs) extensión disponible.
+* [Tor](https://www.torproject.org/) en modo privado y como puente (bridge relay)
+    * [Obfsproxy](https://www.torproject.org/projects/obfsproxy.html.en) con obfs4 disponible como extensión
+* [WireGuard](https://www.wireguard.com/), un protocolo moderno y de alta performance.
 
-Installation
-------------
-Please read all installation instructions **carefully** before proceeding.
+Leer también:
+* Una [lista técnica de caracteristicas](Features.md) 
+* Una [lista técnica de servicios](Services.md)
 
-### Important Clarification ###
-Streisand is based on [Ansible](https://www.ansible.com/), an automation tool that is typically used to provision and configure files and packages on remote servers. Streisand automatically sets up **another remote server** with the VPN packages and configuration.
+<a id="cloud-providers"></a>
+## Proveedores de nube
+* Amazon Web Services (AWS)
+* Microsoft Azure
+* Digital Ocean
+* Google Compute Engine (GCE)
+* Linode
+* Rackspace
 
-Streisand will spin up and deploy **another server** on your chosen hosting provider when you run **on your home machine** (e.g. your laptop). Usually, you **do not run Streisand on the remote server** as by default this would result in the deployment of another server from your server and render the first server redundant (whew!).
 
-In some circumstances advanced users may opt to use the local provisioning mode to have the system running Streisand/Ansible configure itself as a Streisand server. This is a configuration mode best reserved for when it isn't possible to install Ansible on your home machine or when your connection to a cloud provider is too unreliable for Ansible's SSH connections.
+#### Otros proveedores
+Recomendamos utilizar uno de los proveedores mencionados arriba. Si sos un experto y puedes instalar un servidor Ubuntu 16.04 en otro lado, están las opciones de instalación de "localhost" y "servidor remoto existente". Para mayor información ver [la guía avanzada de instalación](Advanced%20installation.md).
 
-### Prerequisites ###
-Complete all of these tasks on your local home machine.
+## Instalación
 
-* Streisand requires a BSD, Linux, or macOS system. As of now, Windows is not supported. All of the following commands should be run inside a Terminal session.
-* Python 2.7 is required. This comes standard on macOS, and is the default on almost all Linux and BSD distributions as well. If your distribution packages Python 3 instead, you will need to install version 2.7 in order for Streisand to work properly.
-* Make sure an SSH public key is present in ~/.ssh/id\_rsa.pub.
-  * SSH keys are a more secure alternative to passwords that allow you to prove your identity to a server or service built on public key cryptography. The public key is something that you can give to others, whereas the private key should be kept secret (like a password).
-  * To check if you already have an SSH public key, please enter the following command at a command prompt.
-  
-        ls ~/.ssh
-  * If you see an id_rsa.pub file, then you have an SSH public key.
-  * If you do not have an SSH key pair, you can generate one by using this command and following the defaults:
+Vas a necesitar acceso a la linea de comando del sistema Unix. Puedes utilizar Linux, BSD, o macOS; en Windows 10, el _Windows Subsystem for Linux_ (WSL) sirve como Linux. 
 
-        ssh-keygen
-  * If you'd like to use an SSH key with a different name or in a non-standard location, please enter 'yes' when asked if you'd like to customize your instance during installation.
-  * **Please note**: You will need these keys to access your Streisand instance over SSH. Please keep them for the lifetime of the Streisand server.
-### Bootstrap ###
-* Install the bootstrap packages: Git, and `pip` for Python 2.7.
+Una vez que estes listo, lee las [instrucciones completas de instalación](Installation.md).
 
-  * On Debian and Ubuntu
 
-        sudo apt-get install git python-pip
-  * On Fedora 27, some additional packages are needed later.
+## Cosas que queremos hacer mejor
 
-		sudo yum install git python2-pip gcc python2-devel python2-crypto python2-pycurl libcurl-devel
-  * On CentOS 7, `pip` is available from the EPEL repository; some additional packages are needed later.
+Además de una buena limpieza, nos vendría bien:
 
-		sudo yum -y update && sudo yum install -y epel-release
-		sudo yum -y update && sudo yum install -y git gcc python-devel python-crypto python-pycurl python-pip libcurl-devel
-  * On macOS, `git` is part of the Developer Tools, and it will be installed the first time you run it. If there isn't already a `pip` command installed, install it with:
+* Simplificar la instalación
+* Adoptar nuevas herramientas anti-censura de forma más rápida
 
-        sudo python2.7 -m ensurepip
+Buscamos ayuda para ambas tareas.
 
-### Execution ###
-1. Clone the Streisand repository and enter the directory.
+Si crees que hay algo que Streisand debería hacer, o si encontras errores (bugs) en su documentación o ejecución, por favor carga un reporte en el [Sistema de Incidentes](https://github.com/StreisandEffect/streisand/issues).
 
-        git clone https://github.com/StreisandEffect/streisand.git && cd streisand
-
-2. Run the installer for Ansible and its dependencies.
-
-        ./util/venv-dependencies.sh ./venv
-  * The installer will detect missing packages, and print the commands needed to install them.
-
-3. Activate the Ansible packages that were installed.
-
-        source ./venv/bin/activate
-
-4. Execute the Streisand script.
-
-        ./streisand
-5. Follow the prompts to choose your provider, the physical region for the server, and its name. You will also be asked to enter API information.
-5. Once login information and API keys are entered, Streisand will begin spinning up a new remote server.
-6. Wait for the setup to complete (this usually takes around ten minutes) and look for the corresponding files in the 'generated-docs' folder in the Streisand repository directory. The HTML file will explain how to connect to the Gateway over SSL, or via the Tor hidden service. All instructions, files, mirrored clients, and keys for the new server can then be found on the Gateway. You are all done!
-
-### Running Streisand to Provision Localhost (Advanced) ###
-
-If you can not run Streisand in the normal manner (running from your client home machine/laptop to configure a remote server) Streisand supports a local provisioning mode. Simply choose "Localhost (Advanced)" from the menu after running `./streisand`.
-
-**Note:** Running Streisand against localhost can be a destructive action! You will be potentially overwriting configuration files and must be certain that you are affecting the correct machine.
-
-### Running Streisand on Other Providers (Advanced) ###
-
-You can also run Streisand on a new Ubuntu 16.04 server. Dedicated hardware? Great! Esoteric cloud provider? Awesome! To do so, simply choose "Existing Server (Advanced)" from the menu after running `./streisand` and provide the IP address of the existing server when prompted.
-
-The server must be accessible using the `$HOME/.ssh/id_rsa` SSH Key, and **root** is used as the connecting user by default. If your provider requires you to SSH with a different user than root (e.g. `ubuntu`) specify the `ANSIBLE_SSH_USER` environmental variable (e.g. `ANSIBLE_SSH_USER=ubuntu`) when you run `./streisand`.
-
-**Note:** Running Streisand against an existing server can be a destructive action! You will be potentially overwriting configuration files and must be certain that you are affecting the correct machine.
-
-### Noninteractive Deployment (Advanced) ###
-
-Alternative scripts and configuration file examples are provided for
-noninteractive deployment, in which all of the required information is passed
-on the command line or in a configuration file.
-
-Example configuration files are found under `global_vars/noninteractive`. Copy
-and edit the desired parameters, such as providing API tokens and other choices,
-and then run the appropriate script.
-
-To deploy a new Streisand server:
-
-      deploy/streisand-new-cloud-server.sh \
-        --provider digitalocean \
-        --site-config global_vars/noninteractive/digitalocean-site.yml
-
-To run the Streisand provisioning on the local machine:
-
-      deploy/streisand-local.sh \
-        --site-config global_vars/noninteractive/local-site.yml
-
-To run the Streisand provisioning against an existing server:
-
-      deploy/streisand-existing-cloud-server.sh \
-        --ip-address 10.10.10.10 \
-        --ssh-user root \
-        --site-config global_vars/noninteractive/digitalocean-site.yml
-
-Upcoming Features
------------------
-* Easier setup.
-
-If there is something that you think Streisand should do, or if you find a bug in its documentation or execution, please file a report on the [Issue Tracker](https://github.com/StreisandEffect/streisand/issues).
-
-Core Contributors
+Cointribuidores Centrales
 ----------------
 * Jay Carlson (@nopdotcom)
 * Nick Clarke (@nickolasclarke)
@@ -203,7 +91,7 @@ Core Contributors
 * Daniel McCarney (@cpu)
 * Corban Raun (@CorbanR)
 
-Acknowledgements
+Agradecimientos
 ----------------
 [Jason A. Donenfeld](https://www.zx2c4.com/) deserves a lot of credit for being brave enough to reimagine what a modern VPN should look like and for coming up with something as good as [WireGuard](https://www.wireguard.com/). He has our sincere thanks for all of his patient help and high-quality feedback.
 
