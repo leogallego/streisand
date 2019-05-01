@@ -1,10 +1,8 @@
 ---
-- name: "Add the Tor APT key; hiding 200 lines of log..."
+- name: "Add the Tor APT key"
   apt_key:
-    id: 886DDD89
-    data: "{{ item }}"
-  with_file: tor-signing.key
-  no_log: True
+    id: A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89
+    keyserver: keyserver.ubuntu.com
 
 - name: Add the Tor repository
   apt_repository:
@@ -16,14 +14,13 @@
 
 - name: Install the package to keep the Tor signing key current
   apt:
-    name: deb.torproject.org-keyring
+    package: deb.torproject.org-keyring
 
 - name: Install obfs4 and Tor
   apt:
-    name: "{{ item }}"
-  with_items:
-    - obfs4proxy
-    - tor
+    package:
+      - obfs4proxy
+      - tor
 
 # Update the firewall to allow Tor and obfs4proxy
 # NOTE(@cpu): we do this early in the role because the Tor daemon will check if
